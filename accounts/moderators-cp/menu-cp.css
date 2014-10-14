@@ -1,0 +1,333 @@
+.tabbed-forms {
+	position: relative;
+	float: right;
+	width: 800px;
+	min-height: 500px;
+	height: auto;
+	top: 0;
+	left: 0;
+	border: 1px solid #d8d8d8;
+	border-top: 3px solid #800404;
+	background: #f9f9f9;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: inset 0 0 0 1px #fff;
+	-webkit-box-shadow: inset 0 0 0 1px #fff;
+	box-shadow: inset 0 0 0 1px #fff;
+}
+.menu-frame {
+	position: relative;
+	float: right;
+	top: 0;
+	right: 0;
+	height: 40px;
+	width: 150px;
+	background: #f8f8f8;
+	border: 1px solid #d8d8d8;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: inset 0 0 0 1px #fff;
+	-webkit-box-shadow: inset 0 0 0 1px #fff;
+	box-shadow: inset 0 0 0 1px #fff;
+	display: block;
+}
+/* .buttons-cp {
+	-moz-box-shadow:inset -5px 31px 22px -9px #f5978e;
+	-webkit-box-shadow:inset -5px 31px 22px -9px #f5978e;
+	box-shadow:inset -5px 31px 22px -9px #f5978e;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
+	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
+	background-color:#f24537;
+	-webkit-border-top-left-radius:15px;
+	-moz-border-radius-topleft:15px;
+	border-top-left-radius:15px;
+	-webkit-border-top-right-radius:15px;
+	-moz-border-radius-topright:15px;
+	border-top-right-radius:15px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:-8px;
+	border:1px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	font-style:normal;
+	height:39px;
+	line-height:39px;
+	width:115px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:5px 2px 3px #810e05;
+}
+.buttons-cp:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
+	background-color:#c62d1f;
+}.buttons-cp:active {
+	position:relative;
+	top:1px;
+} */
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,200,300);
+@import "compass/css3/transform";
+
+@mixin font($font-size,$line-height,$font-family,$font-weight) {
+	font:#{$font-size}/#{$line-height} $font-family;
+	font-weight:$font-weight;
+}
+
+@mixin keyframe ($animation_name) {
+	@-webkit-keyframes $animation_name {
+		@content;
+	}
+
+	@-moz-keyframes $animation_name {
+		@content;
+	}
+
+	@-o-keyframes $animation_name {
+		@content;
+	}
+
+	@keyframes $animation_name {
+		@content;
+	}
+}
+
+@mixin animation ($delay, $duration, $animation) {
+	-webkit-animation-delay: $delay;
+	-webkit-animation-duration: $duration;
+	-webkit-animation-name: $animation;
+	-webkit-animation-fill-mode: forwards;
+
+	-moz-animation-delay: $delay;
+	-moz-animation-duration: $duration;
+	-moz-animation-name: $animation;
+	-moz-animation-fill-mode: forwards;
+
+	-o-animation-delay: $delay;
+	-o-animation-duration: $duration;
+	-o-animation-name: $animation;
+	-o-animation-fill-mode: forwards;
+
+	animation-delay: $delay;
+	animation-duration: $duration;
+	animation-name: $animation;
+	animation-fill-mode: forwards;
+}
+
+@mixin breakpoint($point) {
+	@if $point == big {
+		@media screen and (max-width: 1600px){@content;}
+	}
+	@else if $point == medium {
+		@media screen and (max-width: 900px){@content;}
+	}
+	@else if $point == small {
+		@media screen and (max-width: 600px){@content;}
+	}
+}
+
+@include keyframe(content-opacity) {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+@include keyframe(content-rotate-y) {
+	from {
+		@include transform(rotateY(90deg));
+	}
+	to {
+		opacity:1;
+		@include transform(rotateY(0deg));
+	}
+}
+
+@include keyframe(content-rotate-x) {
+	from {
+		@include transform(rotateX(90deg));
+	}
+	to {
+		opacity:1;
+		@include transform(rotateX(0deg));
+	}
+}
+
+@include keyframe(content-rotate-both) {
+	from {
+		@include transform(rotate(90deg));
+		@include transform-origin(0% 50%);
+	}
+	to {
+		opacity:1;
+		@include transform(rotate(0deg));
+		@include transform-origin(0% 50%);
+	}
+}
+
+@include keyframe(content-pop-out) {
+	0% {
+		opacity:1;
+		@include transform(scale(1)); 
+	}
+	50% {
+		opacity:1;
+		@include transform(scale(1.1));
+	}
+	100% {
+		opacity:1;
+		@include transform(scale(1));
+	}
+}
+
+@include keyframe(content-pop-in) {
+	from {
+		opacity:1;
+		@include transform(scale(1.1)); 
+	}
+	to {
+		opacity:1;
+		@include transform(scale(1));
+	}
+}
+
+@include keyframe(content-slide-bot) {
+	from {
+		top:20px;
+		opacity:0;
+	}
+	to {
+		top:0px;
+		opacity:1;
+	}
+}
+
+@include keyframe(content-slide-top) {
+	from {
+		top:-20px;
+		opacity:0;
+	}
+	to {
+		top:0px;
+		opacity:1;
+	}
+}
+
+/* used for wrapper animation after the load of the page */
+@include keyframe(show) {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+$tab-head-color:#525252;
+$tab-checked-border-color:#B8B63E;
+$tab-border-color:#4D4C47;
+$tab-text-color:#DBDBD3;
+$tab-checked-text-color:#F2F2F2;
+$tab-hover-color:#667876;
+$tab-body-wrapper-color:#F7EEC6;
+$tab-delimiter-line-height:5px;
+$tab-label-height:3em;
+
+html {
+	background:url(http://distinctionjewelry.com/info/wp-content/uploads/2013/01/blurred-background-10-2000x1250.jpg);
+	webkit-font-smoothing: antialiased;
+	@include font(1em,1.5em,'Raleway',normal);
+}
+
+.tabs-wrapper {
+	margin:5% 10% 0 10%;
+	input[type=radio] {
+		display:none;
+	}
+	label {
+		transition:background 0.4s ease-in-out, height 0.2s linear;
+		display:inline-block;
+		cursor:pointer;
+		color:$tab-text-color;
+		width:20%;
+		height:$tab-label-height;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+		background:$tab-head-color;
+		text-align:center;
+		line-height:3em;
+		&:last-of-type {
+			border-bottom:none;
+		}
+		&:hover {
+			background:$tab-hover-color;
+      /*@include transform (translate(0,-0.2em));*/
+		}
+		@include breakpoint(big){width:15%;}
+		@include breakpoint(medium){width:20%;}
+		@include breakpoint(small){
+      width:100%; 
+      display:block; 
+      border-bottom:2px solid $tab-border-color;
+      border-radius:0;
+    }
+	}
+	@include breakpoint(small){margin:0;}
+}
+
+#tab1, #tab2, #tab3, #tab4 {
+	&:checked{
+		+ label {
+			background:$tab-checked-border-color;
+			color:$tab-checked-text-color;
+		}
+	}
+}
+
+.tab-body {
+	position:absolute;
+	top:-9999px;
+	opacity:0;
+	padding:10px;
+}
+
+.tab-body-wrapper {
+	background:$tab-body-wrapper-color;
+	border-top:$tab-checked-border-color $tab-delimiter-line-height solid;
+  border-bottom-right-radius:3px;
+  border-bottom-left-radius:3px;
+  border-top-right-radius:3px;
+	@include animation(0.2s,1.5s,show);
+	@include breakpoint(small){
+    border:none;
+    border-radius:0;
+  };
+}
+
+#tab1:checked ~ .tab-body-wrapper #tab-body-1, #tab2:checked ~ .tab-body-wrapper #tab-body-2 , #tab3:checked ~ .tab-body-wrapper #tab-body-3 , #tab4:checked ~ .tab-body-wrapper  #tab-body-4 {
+	position:relative;
+	top:0px;
+	/* Choose one */
+	 @include animation(0.2s,0.8s,content-opacity);
+	/* @include animation(0.2s,0.8s,content-rotate-x); */
+	/* @include animation(0.2s,0.8s,content-rotate-y); */
+	/* @include animation(0.2s,0.8s,content-rotate-both); */
+	/* @include animation(0.2s,0.8s,content-pop-in); */
+	/* @include animation(0.2s,0.8s,content-pop-out); */
+	/* @include animation(0.1s,1s,content-slide-bot); */
+	/*@include animation(0.1s,1s,content-slide-top);*/
+}
