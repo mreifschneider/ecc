@@ -1,8 +1,4 @@
 <?php
- if($_SERVER['REQUEST_METHOD'] == "POST"){
-session_start();
-
-include 'connect.php';
 
 $username=$_POST['username'];
 $password=$_POST['password'];
