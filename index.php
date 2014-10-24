@@ -1,47 +1,47 @@
 <?php
-session_start ();
+session_start();
 require_once ('common/commonDatabase.php');
-
+$command = 'articles';
 if (isset($_GET['cmd']) === true) {
 	$command = $_GET['cmd'];
 }
-
-$sql = "SELECT articles.id,fk_student,topic,content,FirstName,image_name FROM articles,users WHERE users.id = fk_student";
-$query = mysql_query ( $sql );
-
-include 'styles/header.php';
-
+if ($command === 'articles') {
+	include_once('lib/articles.php');
+	header('Content-Type: application/json');
+	print ecc_getArticles();
+	die();
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CS DEPARTMENT SITE</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
 
-<div class="top-banner">
-<?php include 'slideshow/slideshow.html';?>
-<iframe class="vid" width="330" height="250"
-		src="https://docs.google.com/file/d/0Bw47NyVoMxg5X0plVlBLeW8tdmc/preview"
-		frameborder="0" allowfullscreen></iframe>
+<link rel="stylesheet" href="common/ui/ecc.css" type="text/css">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"
+	type="text/javascript"></script>
+<script src="common/common.js" type="text/javascript"></script>
+</head>
+
+<body>
+<?php
+include 'common/ui/header.php';
+?>
+<div class="article-box">
+	<div id="topic">
+		<h2>
+			<a href="#"></a>
+		</h2>
+	</div>
+	<p>By: no</p>
+	<hr />
+	<div id="content">	 </div>
+	<br /> <br />
 </div>
-<div class="inside">
-
-
-	<div class="aside">
-
-<?php include 'styles/calender.php'?>
-
-			</div>
-	<br />
-	<br />
-	<br />
-
-	<div class="article">
-
-
-										<?php
-										
-										include 'articles.php';
-										?>
-			 
- 			</div>
 
 </div>
-
-<?php include 'styles/footer.php';?>
-		
+</body>
+</html>
