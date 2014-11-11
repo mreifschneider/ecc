@@ -2,11 +2,14 @@
 /**
  * @package common
  */
-
 $command = $paramater = null;
-$eccContent = $eccContentJS = array();
+$eccContent = $eccContentJS = array ();
 
-$commands = array ( );
+$eccUserFile = 'common/js/json/users.json';
+// move outside of webroot when on production server.
+// note that the test@edgewood.edu account has password of test.
+
+$commands = array ();
 
 if (isset($_GET['do']) === true) {
 	$paramater = $_GET['do'];
@@ -26,8 +29,7 @@ foreach ( $commands as $commandArray ) {
 	}
 }
 if (count($eccContent) <= 0) {
-	$eccContent = array('common/ui/default.html');
+	$eccContent = array ( 'common/ui/default.html');
 }
-
 
 ?>

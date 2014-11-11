@@ -19,7 +19,7 @@ function eccUser_userLogin( $userEmail = null, $userPassword = null ) {
 
 	header('Content-Type: application/json');
 	
-	$userArray = json_decode(file_get_contents('/web/ecc/users.json'), true);
+	$userArray = json_decode(file_get_contents($eccUserFile), true);
 	$userMatch = false;
 	
 	foreach ( $userArray as $user ) {
@@ -55,11 +55,7 @@ function eccUser_userLogin( $userEmail = null, $userPassword = null ) {
 
 function eccUser_setPassword( $userEmail, $userPassword ) {
 
-	$database = $GLOBALS['database'];
-	$userEmail = mysqli_real_escape_string($database, $userEmail);
-	$userPassword = mysqli_real_escape_string($database, $userPassword);
-	
-	$userSalt = hash('whirlpool', 
+		$userSalt = hash('whirlpool', 
 			uniqid(mt_rand(), true) . 'cHJ789__aFH,a-' . $userEmail . '__++27>DAhj-82nda82');
 	
 	$userHash = $userSalt . $userPassword;
@@ -67,18 +63,13 @@ function eccUser_setPassword( $userEmail, $userPassword ) {
 	for ($counter = 0; $counter < 212; $counter++) {
 		$userHash = hash('whirlpool', $userHash);
 	}
-	$userHash = mysqli_real_escape_string($database, $userSalt . $userHash);
+	$userHash = $userSalt . $userHash;
 	
 	$userQuery = "UPDATE User
     SET User.UserHash = '$userHash'
     WHERE User.UserEmail = '$userEmail'; ";
 	
-	mysqli_query($database, $userQuery);
-	
-	if (intval(mysqli_affected_rows($database)) === 1) {
-		return true;
-	}
-	return false;
+
 }
 
 ?>
