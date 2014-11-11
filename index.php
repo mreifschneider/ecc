@@ -1,16 +1,7 @@
 <?php
+error_reporting(E_ALL);
 session_start();
-require_once ('common/commonDatabase.php');
-$command = 'articles';
-if (isset($_GET['cmd']) === true) {
-	$command = $_GET['cmd'];
-}
-if ($command === 'articles') {
-	include_once('lib/articles.php');
-	header('Content-Type: application/json');
-	print ecc_getArticles();
-	die();
-}
+require_once ('common/common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,27 +12,25 @@ if ($command === 'articles') {
 
 <link rel="stylesheet" href="common/ui/ecc.css" type="text/css">
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"
-	type="text/javascript"></script>
-<script src="common/common.js" type="text/javascript"></script>
+<script src="common/js/jquery-1.11.1.js" type="text/javascript"></script>
+
 </head>
 
 <body>
+
 <?php
 include 'common/ui/header.php';
 ?>
-<div class="article-box">
-	<div id="topic">
-		<h2>
-			<a href="#"></a>
-		</h2>
-	</div>
-	<p>By: no</p>
-	<hr />
-	<div id="content">	 </div>
-	<br /> <br />
-</div>
 
-</div>
+<div id="eccContent">
+<?php 
+foreach ($eccContent as $contentFile) {
+	readfile($contentFile); 
+}
+
+?>
+	</div>
+	
+	<script src="common/common.js" type="text/javascript"></script>
 </body>
 </html>
