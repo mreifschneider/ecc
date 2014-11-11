@@ -1,4 +1,4 @@
 <?php 
-$eccContent = array('sections/careers/default.html');
+$eccContent = array('sections/careers/ui/default.html');
 
 ?>

@@ -2,6 +2,7 @@
 error_reporting(E_ALL);
 session_start();
 require_once ('common/common.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,7 @@ require_once ('common/common.php');
 <link rel="stylesheet" href="common/ui/ecc.css" type="text/css">
 
 <script src="common/js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="common/common.js" type="text/javascript"></script>
 
 </head>
 
@@ -31,6 +33,6 @@ foreach ($eccContent as $contentFile) {
 ?>
 	</div>
 	
-	<script src="common/common.js" type="text/javascript"></script>
+	
 </body>
 </html>

@@ -1,5 +1,7 @@
-$(document).ready(function () {
+var ecc_postLoad = null; 
 
+$(document).ready(function () {
+	
 	(function( ecc, $, undefined ) { 
 		ecc.academics = {
 				'majorList':[], 'getMajorList':function(){
@@ -8,8 +10,10 @@ $(document).ready(function () {
 					});
 				}	
 		},
-		ecc.articles = { 
-				'list':[], 'getList':function(){
+		ecc.articles = {
+				'homePageCharLimit':300,
+				
+				'list':[], 'getList':function() {
 					return $.getJSON('index.php?cmd=articles&do=list').done(function(data){
 						ecc.articles.list = data;
 					});
@@ -43,7 +47,7 @@ $(document).ready(function () {
 					if (ecc.user.loggedIn === true) {
 						$('#eccNavLoginDiv').hide();
 						$('#eccNavLoggedInName').text(ecc.user.name).show(); 
-						$('#eccLoginLink').hide();
+						$('#eccNavLoginLink').hide();
 					}
 				}
 		}
@@ -53,7 +57,7 @@ $(document).ready(function () {
 		ecc.user.makeNavbarMenu();
 	});
 
-	$('#eccLoginLink').on('click',function(event) {
+	$('#eccNavLoginLink').on('click',function(event) {
 		event.preventDefault();
 		$('#eccNavLoginDiv').slideToggle(100);
 	});
@@ -61,31 +65,21 @@ $(document).ready(function () {
 	$('#eccNavLoginForm').on('submit',function(event) {
 		event.preventDefault();
 		ecc.user.login().done(function(data) {
+			console.log(JSON.stringify(data));
 			if ((data != null) && (data.hasOwnProperty('result') === true)) {
 				ecc.user.name = data.name;
 				ecc.user.makeNavbarMenu();
 			}
 		});
 	});
-	
-	ecc.academics.getMajorList().done(function(){
+
+	ecc.academics.getMajorList().done(function() {
 		console.log(JSON.stringify(ecc.academics.majorList));
 	});
 
-	ecc.articles.getList().done(function(){
-
-		var $articleTemplate = $(
-				'<div class="eccArticle"><h2 class="eccArticleTopic"></h2><p class="eccArticleData"></p>\
-				<hr/><div class="eccArticleContent"></div></div>'
-		);
-
-		$.each(ecc.articles.list,function(articleIndex,articleObj){
-			var $article = $articleTemplate.clone();
-			$article.find('.eccArticleTopic').append(articleObj.Topic);
-			$article.find('.eccArticleContent').append(articleObj.Content);
-			$("#eccArticleArea").append($article);
-		});
-	});
+	if (typeof ecc_postLoad === 'function') { 
+		ecc_postLoad();
+	}
 
 
 });

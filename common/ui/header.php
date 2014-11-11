@@ -3,11 +3,10 @@
 	<img id="eccImgEdgewoodLogo"
 		src="http://www.edgewood.edu/Portals/0/Skins/ECBSCore/img/logos/ECLogo150.png" />
 
-	<a href="#" id="eccLoginLink">Login</a>
+	<a href="#" id="eccNavLoginLink">Login</a>
 	<a href="#" id="eccNavLoggedInName" style="display:none;"></a>
 	
-	</ul>
-	
+		
 	<ul>
 
 		<li class="eccNavActive"><a href="?">Home</a></li>
@@ -19,8 +18,8 @@
 			</ul></li>
 
 
-		<li><a href="http://cs470.comoj.com/academics">Academics</a></li>
-		<li><a href="http://cs470.comoj.com/careers.php">Careers</a></li>
+		<li><a href="?cmd=academics">Academics</a></li>
+		<li><a href="?cmd=careers">Careers</a></li>
 		<li><a href="#">Faculty</a></li>
 		<li><a href="#">Students + </a>
 		<ul>

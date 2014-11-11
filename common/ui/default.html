@@ -1,6 +1,23 @@
+<script type="text/javascript">
+ecc_postLoad = function() {
+		ecc.articles.getList().done(function() {
+			var $articleTemplate = $("#eccArticleArea").clone();
+			$("#eccArticleArea").empty();
+			$.each(ecc.articles.list, function(articleIndex, articleObj) {
+				var $article = $articleTemplate;
+				$article.find('.eccArticleTopic').append(articleObj.Topic);
+				$article.find('.eccArticleContent').append(articleObj.Content);
+				$article.find('.eccArticleDate').append(articleObj.Date);
+				$("#eccArticleArea").append($article);
+			});
+		});
+	}
+</script>
 <div>
-	<img src="common/ui/img/1-2.jpg" alt="Classroom" title="Classroom"
-		style="float: right; vertical-align: middle; margin: 15px;" /> <br />
+	<iframe id="eccHomeVideo"  
+		 src="//www.youtube.com/embed/nzSIjfZlOpY"
+		frameborder="0" allowfullscreen></iframe>
+
 	<h2>Computer Information Systems</h2>
 	Want an exciting and rewarding career? The Computing & Information
 	Sciences Department at Edgewood College is a great first step.
@@ -18,13 +35,17 @@
 	curriculum, and internship experience, many Computer Information
 	Systems majors at Edgewood have jobs secured before they graduate.
 </div>
+<br />
+<div id="eccArticleDefault">
+	<img src="common/ui/img/1-2.jpg" alt="Classroom" title="Classroom"
+		style="float: left; vertical-align: middle; margin: 15px;" /> <br />
+	<div id="eccArticleArea">
+		<h3>Recent Articles</h3>
+		<hr />
+		<div class="eccArticle">
+			<strong><span class="eccArticleTopic"></span></strong> (<span
+				class="eccArticleDate"></span>) - <span class="eccArticleContent"></span>
+		</div>
+	</div>
 
-<div style="clear: both;">
-	<iframe
-		style="float: left; padding-right: 15px; vertical-align: middle;"
-		width="330" height="250" src="//www.youtube.com/embed/nzSIjfZlOpY"
-		frameborder="0" allowfullscreen></iframe>
-
-	<div id="eccArticleArea" style="display: table-cell;"></div>
-
-</div
+</div>
