@@ -4,6 +4,9 @@ ecc_postLoad = function() {
 			var $articleTemplate = $("#eccArticleArea").clone();
 			$("#eccArticleArea").empty();
 			$.each(ecc.articles.list, function(articleIndex, articleObj) {
+				if (articleObj.CategoryID != 1) { 
+					return 'non-false';
+				}
 				var $article = $articleTemplate;
 				$article.find('.eccArticleTopic').append(articleObj.Topic);
 				$article.find('.eccArticleContent').append(articleObj.Content);
@@ -40,7 +43,7 @@ ecc_postLoad = function() {
 	<img src="common/ui/img/1-2.jpg" alt="Classroom" title="Classroom"
 		style="float: left; vertical-align: middle; margin: 15px;" /> <br />
 	<div id="eccArticleArea">
-		<h3>Recent Articles</h3>
+		<h3>Recent News</h3>
 		<hr />
 		<div class="eccArticle">
 			<strong><span class="eccArticleTopic"></span></strong> (<span
