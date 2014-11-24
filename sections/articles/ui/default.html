@@ -1,0 +1,32 @@
+<script type="text/javascript">
+ecc_postLoad = function() {
+		ecc.articles.getList().done(function() {
+			var $articleTemplate = $("#eccArticleArea").clone();
+			$("#eccArticleArea").empty();
+			$.each(ecc.articles.list, function(articleIndex, articleObj) {
+				if (articleObj.CategoryID != 1) { 
+					return 'non-false';
+				}
+				var $article = $articleTemplate;
+				$article.find('.eccArticleTopic').append(articleObj.Topic);
+				$article.find('.eccArticleContent').append(articleObj.Content);
+				$article.find('.eccArticleDate').append(articleObj.Date);
+				$("#eccArticleArea").append($article);
+			});
+		});
+	}
+</script>
+
+<div id="eccArticleDefault">
+	<img src="common/ui/img/1-2.jpg" alt="Classroom" title="Classroom"
+		style="float: left; vertical-align: middle; margin: 15px;" /> <br />
+	<div id="eccArticleArea">
+		<h3>News</h3>
+		<hr />
+		<div class="eccArticle">
+			<strong><span class="eccArticleTopic"></span></strong> (<span
+				class="eccArticleDate"></span>) - <span class="eccArticleContent"></span>
+		</div>
+	</div>
+
+</div>
