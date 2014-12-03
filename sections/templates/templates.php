@@ -15,6 +15,10 @@ function eccTemplates_edit() {
 	$resultArray = array('newHTML'=>$content); 
 	$templateArray = json_decode(file_get_contents('common/js/json/pages.json'), true);
 	$template = 'default';
+	if (isset($_POST['eccTemplate']) === true) {
+		$template = $_POST['eccTemplate'];
+	}
+	
 	$templateArrayTemp = array();
 	foreach ($templateArray as $tempArray) {
 		if ($tempArray['ID'] == $template) {
