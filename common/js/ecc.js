@@ -24,62 +24,64 @@ $(document).ready(function() {
 				'error':'common/ui/error.html',
 				'careers':'pages/careers.html',
 				'alumni':'pages/alumni.html',
-				'read':'pages/read.html'
+				'read':'pages/read.html',
+				'faculty':'pages/faculty.html'
 		},
-		
 
-		ecc.pageLoad = function() {
-			$.getJSON('index.php?cmd=templates&do=list').done(function(data){
+		ecc.read = function(readArticleID) {
 
+			$.get('templates/articles.html?id='+new Date().getTime()).done(function(articleTemplateHTML) { 
 
-				$.each(data,function(templateIndex,templateObj) {
-					if (templateObj.ID == ecc.page) { 
-						$('#eccContent').html( templateObj.Template );
-						if ((typeof templateObj.LoadArticles !== 'undefined') &&
-								(typeof templateObj.LoadArticlesElement !== 'undefined')) {
+				var $eccArticleTemplate, $eccArticleTemplateMaster = $(
+						articleTemplateHTML ).find('.eccTemplate').clone(); 
 
-							ecc.articles.fillElement(1, templateObj.LoadArticlesElement);
-						}
-						if (ecc.user.details.loggedIn === true) {
+				$eccArticleTemplateMaster.removeClass('eccTemplate');
 
-							var $editLink = $('<a href="#" class="eccEdit">Edit</a>');
+				ecc.articles.fetch().done(function() {
+					var $articles = ecc.articles.storage;
 
-							$editLink.on('click',function(event) {
-								event.preventDefault();
-								$('#eccContent').empty().append( $('<textarea></textarea').attr('id','eccText').css(
-										{'width':'90%','height':'300px'}
-								).text( templateObj.Template ));
-
-								var $editSave = $('<div><button class="eccSave">Save</button></div>');
-								$editSave = $editSave.find('button');
-								$editSave.on('click', function(event) {
-									event.preventDefault(); 
-									var $submit = {'eccTemplate':eccPage, 'html': $('#eccText').val() }; 
-									$.post('?cmd=templates&do=edit', $submit
-									).done(function(data){
-										console.log(JSON.stringify(data));
-									});
-								});
-
-								$('#eccContent').append($editSave);
-							});
-							$('#eccContent').prepend( $editLink.wrap('<div></div>'));
+					$articles.find('article').each(function(articleID){
+						if (articleID !== (readArticleID-1)) { 
+							return 'non-false';
 						}
 
-						return false;
-					}
+						$eccArticleContent = $('<span></span>').append( 
+								$(this).find('content').text() 
+						), 
+						eccArticleAuthor = $(this).find('author').text(),
+						eccArticleDate = $(this).find('date').text(), 
+						eccArticleTitle = $(this).find('title').text();
+
+						$eccArticleTemplate = $eccArticleTemplateMaster.clone();
+
+						$eccArticleTemplate.find(
+								'.eccArticleContent'
+						).empty().append($eccArticleContent);
+
+						$eccArticleTemplate.find('.eccArticleTitle').text( eccArticleTitle );
+						$eccArticleTemplate.find('.eccArticleDate').text( eccArticleDate );
+						$eccArticleTemplate.find('.eccArticleAuthor').text( eccArticleAuthor ); 
+
+						$('#eccContent').append( $eccArticleTemplate ); 
+
+					});
 				});
-			});		
-		}
+			});
+		},
 		ecc.process = function() {
-			
-			if (typeof urlParam('id') === 'string') {
-				ecc.id = parseInt( urlParam('id') );
-				
-			}
 
 			if ( typeof urlParam('page') === 'string' ) {
 				ecc.page = urlParam('page');
+			}
+			if (ecc.page === 'read') {
+				ecc.id = false;
+				if (typeof urlParam('id') === 'string') {
+					ecc.id = parseInt( urlParam('id') );
+					if ((isNaN(ecc.id) === false) && (typeof ecc.id === 'number')) {
+						ecc.read(ecc.id);
+						return;
+					}
+				}
 			}
 
 			$.each(ecc.pageMap,function(pageKey, pageURL) { 
