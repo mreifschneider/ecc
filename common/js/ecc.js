@@ -1,3 +1,16 @@
+function urlParam(paramKey) {
+	/* modified from http://stackoverflow.com/a/5448595 */
+
+	var items = location.search.substr(1).split("&");
+	for (var index = 0, tempArray = []; index < items.length; index++) {
+		tempArray = items[index].split("=");
+		if (tempArray[0] === paramKey) {  
+			return tempArray[1];
+		}
+	}
+	return null;
+}
+
 $(document).ready(function() {
 
 	$.get('common/ui/header.html').done(function(headerHTML){
