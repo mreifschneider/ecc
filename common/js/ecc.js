@@ -17,6 +17,8 @@ $(document).ready(function() {
 		$('#eccHeader').html(headerHTML);
 	});
 
+
+
 	(function( ecc, $, undefined ) { 
 
 		ecc.articles = {
@@ -38,7 +40,8 @@ $(document).ready(function() {
 				'careers':'pages/careers.html',
 				'alumni':'pages/alumni.html',
 				'read':'pages/read.html',
-				'faculty':'pages/faculty.html'
+				'faculty':'pages/faculty.html',
+				'news':'pages/news.html'
 		},
 
 		ecc.read = function(readArticleID) {
@@ -118,7 +121,7 @@ $(document).ready(function() {
 
 					$(this).trigger('reset');
 				});
-
+				/*
 				var $eccArticleArea = $('[data-eccArticleArea="true"]');
 				if ($eccArticleArea.length > 0) {
 
@@ -180,7 +183,9 @@ $(document).ready(function() {
 						});
 					});
 				}
+				 */
 			});
+
 		}
 	}( window.ecc = window.ecc || {}, jQuery ));
 
