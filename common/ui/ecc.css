@@ -1,14 +1,19 @@
 @charset "UTF-8";
 
+.eccTemplate {
+	display:none;
+}
+
 #eccNavLoginStatus {
-	color:#fff;
+	color: #fff;
 	font-size: 12px;
 }
+
 nav#eccNavbar ul#eccNavLogin, nav#eccNavbar ul#eccNavUser {
 	right: 0px;
-	top: 0px; 
-	padding-top:0px;
-	padding-bottom:0px;
+	top: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	position: absolute;
@@ -71,11 +76,7 @@ ul#eccAcademicsNav>li>ul>li {
 }
 
 #eccNavbar a#eccNavLoggedInName {
-	float: right;
-	position: relative;
-	padding: 15px 25px;
-	color: #fff;
-	text-decoration: none;
+	font-style: italic;
 }
 
 #eccNavbar #eccNavLoginDiv {
@@ -123,12 +124,13 @@ ul#eccAcademicsNav>li>ul>li {
 
 #eccNavbar ul li:hover>ul {
 	display: block;
+	box-shadow: 2px 2px 2px #000;
 	position: absolute;
-	top: 50px;
+	top: 48px;
 }
 
 #eccNavbar ul {
-	background: #810210;
+	background-color: #810210;
 	padding: 0px 15px;
 	list-style: none;
 	position: relative;
@@ -137,6 +139,7 @@ ul#eccAcademicsNav>li>ul>li {
 
 #eccNavbar ul li {
 	float: left;
+	text-align:left;
 }
 
 #eccNavbar ul li:hover a {
@@ -167,16 +170,22 @@ ul#eccAcademicsNav>li>ul>li {
 	border-bottom: 1px solid #fff;
 	position: relative;
 }
+
 #eccNavbar ul ul li:LAST-CHILD {
-	border-bottom:none;
+	border-bottom: none;
 }
+
 #eccNavbar ul ul li a {
 	padding: 15px 25px;
 	color: #fff;
 }
+#eccNavbar ul#eccNavMain ul li a {
+	padding: 15px 40px 15px 25px;
+	color: #fff;
+}
 
-#eccNavbar ul ul li a:hover {
-	background: #eee;
+#eccNavbar ul ul li a:hover, #eccNavbar ul#eccNavMain ul li a:hover {
+	background-color: #eee;
 	color: #810210;
 }
 
