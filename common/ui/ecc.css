@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
-
-.eccFaculty .eccFacultyImage {
+#eccAlumniForm {
+	width: 400px;
+}
+#eccAlumniForm label {
+	width: 150px;
+	float:left; 
+	margin-right: 5px;
+}
+}
+.eccFacultyImage  {
 	width: 75px;
 	height: 75px;
 	float: left;
@@ -9,29 +17,13 @@
 	vertical-align: middle;
 	display: block;
 }
-.eccFaculty {
+#eccFaculty {
 	vertical-align: middle;
 	width: 50%;
 }
 
-
 .eccTemplate {
 	display: none;
-}
-
-#eccNavLoginStatus {
-	color: #fff;
-	font-size: 12px;
-}
-
-nav#eccNavbar ul#eccNavLogin, nav#eccNavbar ul#eccNavUser {
-	right: 0px;
-	top: 0px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	position: absolute;
 }
 
 ul#eccAcademicsNav, ul#eccAcademicsNav>li>ul {
@@ -80,49 +72,6 @@ ul#eccAcademicsNav>li>ul>li {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-#eccNavbar a#eccNavLoginLink {
-	float: right;
-	position: relative;
-	padding: 15px 25px;
-	color: #fff;
-	text-decoration: none;
-}
-
-#eccNavbar a#eccNavLoggedInName {
-	font-style: italic;
-}
-
-#eccNavbar #eccNavLoginDiv {
-	border-top: 1px solid #fff;
-	padding: 10px;
-	display: block;
-	float: right;
-	position: absolute;
-	top: 50px;
-	right: 0px;
-	z-index: 1;
-	background-color: #810210;
-}
-
-#eccNavbar #eccNavLoginDiv input {
-	width: 200px;
-	height: 15px;
-}
-
-#eccNavbar #eccNavLoginDiv label {
-	color: #fff;
-	width: 100px;
-	float: left;
-	height: 15px;
-	text-align: left;
-	vertical-align: middle;
-	font-size: 14px;
-}
-
-#eccNavbar #eccNavLoginDiv button {
-	float: right;
 }
 
 #eccNavbar {
