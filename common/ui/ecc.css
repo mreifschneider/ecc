@@ -8,20 +8,22 @@
 	float:left; 
 	margin-right: 5px;
 }
+.eccFaculty {
+	vertical-align: middle;
+	width: 50%;
+	padding-bottom:10px;
+	padding-top:10px;
+	padding-left:10px;
 }
+
 .eccFacultyImage  {
 	width: 75px;
 	height: 75px;
-	float: left;
 	margin: 15px;
 	vertical-align: middle;
 	display: block;
+	float:left;
 }
-#eccFaculty {
-	vertical-align: middle;
-	width: 50%;
-}
-
 .eccTemplate {
 	display: none;
 }
